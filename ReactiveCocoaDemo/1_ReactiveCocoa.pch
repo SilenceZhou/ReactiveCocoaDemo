@@ -1,0 +1,17 @@
+//
+//  1_ReactiveCocoa.pch
+//  1_ReactiveCocoa
+//
+//  Created by SilenceZhou on 2017/8/27.
+//  Copyright © 2017年 silence. All rights reserved.
+//
+
+#ifndef __ReactiveCocoa_pch
+#define __ReactiveCocoa_pch
+
+#import "ReactiveObjC.h"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* __ReactiveCocoa_pch */

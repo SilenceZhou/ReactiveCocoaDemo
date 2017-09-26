@@ -29,7 +29,7 @@
     
     self.redView.backgroundColor = [UIColor blueColor];
     
-    
+    [self RACMulticastConnectionUse];
     
 }
 
@@ -199,6 +199,7 @@
     
     // 1.代替代理： 1.RACSubject 2.rac_signalForSelector
     // RACSubject 可以传值   rac_signalForSelector不能传值
+    
     [[self.redView rac_signalForSelector:@selector(btnClick:)] subscribeNext:^(id  _Nullable x) {
         
         NSLog(@"红色view上面的按钮点击了");
@@ -237,6 +238,74 @@
     // 8.字典转模型
     //    [self highLevelRACSequence];
     
+    // 9.RACCommand的简单使用
+    // [self RACCommandSimpleUse];
+    
+    // 10.RACMulticastConnection得用
+    
+    [self RACMulticastConnectionUse];
+    
+    
+}
+
+-(void)RACMulticastConnectionUse
+{
+    // 1、通过信号创建链接
+    RACMulticastConnection *connection = [[RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        NSLog(@"完毕");
+        
+        [subscriber sendNext:@"Send Request"];
+        // 每次sendNext 记得sendCompleted
+        // [subscriber sendCompleted];
+        
+        return nil;
+    }] publish];
+    
+    //  订阅信号（通过链接转换的信号）一次
+    [connection.signal subscribeNext:^(id  _Nullable x) {
+        NSLog(@"一次 x : %@", x);
+    }];
+    
+    //  订阅信号（通过链接转换的信号）二次
+    [connection.signal subscribeNext:^(id  _Nullable x) {
+
+        NSLog(@"二次 x : %@", x);
+    }];
+    [connection connect];
+    
+    // 且只有第一次连接才会有效果
+    //    [connection.signal subscribeNext:^(id  _Nullable x) {
+    //        NSLog(@"重新连接第一次 x : %@", x);
+    //    }];
+    //    [connection.signal subscribeNext:^(id  _Nullable x) {
+    //        NSLog(@"重新连接第二次 x : %@", x);
+    //    }];
+    //    [connection connect];
+}
+
+- (void)RACCommandSimpleUse
+{
+    RACCommand *command = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(NSNumber * _Nullable input) {
+        
+        return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            [subscriber sendNext:input];
+            // 每次sendNext 记得sendCompleted
+            [subscriber sendCompleted];
+            return nil;
+        }];
+    }];
+    [[command.executionSignals switchToLatest] subscribeNext:^(id  _Nullable x) {
+        NSLog(@"%@", x);
+    }];
+    
+    // 在默认情况下 RACCommand 都是不支持并发操作的，需要在上一次命令执行之后才可以发送下一次操作，如果直接execute:两次，最终也只会执行第一个execute：
+    [command execute:@"网络请求1"];
+    // [command execute:@"网络请求2"];
+
+    [RACScheduler.mainThreadScheduler afterDelay:0.5
+                                        schedule:^{
+                                            [command execute:@"网络请求2"];
+                                        }];
 }
 
 
@@ -334,8 +403,6 @@
     [self.redView.btnClickSignal subscribeNext:^(id  _Nullable x) {
         NSLog(@"%@", x);
     }];
-    
-    
 }
 
 
@@ -441,11 +508,9 @@
 - (void)testSignal
 {
     RACSignal *signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-        
         // 3、发送信号信号
         NSLog(@"信号被订阅 发送信号");  // 先打印
         [subscriber sendNext:@"heheh"];
-        
         return nil;
     }];
     
@@ -453,10 +518,7 @@
     // 2.订阅信号 ---必须为订阅
     [signal subscribeNext:^(id  _Nullable x) {
         // 发送信号的内容
-        
-        
         NSLog(@"====%@", x);
-        
     }];
 }
 
@@ -502,6 +564,12 @@
              }
      
      */
+    [signal subscribeNext:^(id  _Nullable x) {
+        // 发送信号的内容
+        NSLog(@"====%@", x);
+        
+    }];
+    
     [signal subscribeNext:^(id  _Nullable x) {
         // 发送信号的内容
         NSLog(@"====%@", x);

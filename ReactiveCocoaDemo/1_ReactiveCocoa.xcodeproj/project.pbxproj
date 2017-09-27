@@ -10,6 +10,9 @@
 		B6209A6E1F55B797007F25E0 /* flags.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6209A6D1F55B797007F25E0 /* flags.plist */; };
 		B6209A711F55B7BF007F25E0 /* Flag.m in Sources */ = {isa = PBXBuildFile; fileRef = B6209A701F55B7BF007F25E0 /* Flag.m */; };
 		B6209A741F55BDA9007F25E0 /* UseScenesVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B6209A731F55BDA9007F25E0 /* UseScenesVc.m */; };
+		B66F4B6B1F7C06AA0095D311 /* LogingVM.m in Sources */ = {isa = PBXBuildFile; fileRef = B66F4B6A1F7C06AA0095D311 /* LogingVM.m */; };
+		B66F4B721F7C07D00095D311 /* LoginVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B66F4B701F7C07D00095D311 /* LoginVc.m */; };
+		B66F4B731F7C07D00095D311 /* LoginVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = B66F4B711F7C07D00095D311 /* LoginVc.xib */; };
 		B6D84ED61F5262390057013F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D84ED51F5262390057013F /* main.m */; };
 		B6D84ED91F5262390057013F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D84ED81F5262390057013F /* AppDelegate.m */; };
 		B6D84EDC1F5262390057013F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D84EDB1F5262390057013F /* ViewController.m */; };
@@ -46,6 +49,11 @@
 		B6209A701F55B7BF007F25E0 /* Flag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flag.m; sourceTree = "<group>"; };
 		B6209A721F55BDA9007F25E0 /* UseScenesVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseScenesVc.h; sourceTree = "<group>"; };
 		B6209A731F55BDA9007F25E0 /* UseScenesVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseScenesVc.m; sourceTree = "<group>"; };
+		B66F4B691F7C06AA0095D311 /* LogingVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogingVM.h; sourceTree = "<group>"; };
+		B66F4B6A1F7C06AA0095D311 /* LogingVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogingVM.m; sourceTree = "<group>"; };
+		B66F4B6F1F7C07D00095D311 /* LoginVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginVc.h; sourceTree = "<group>"; };
+		B66F4B701F7C07D00095D311 /* LoginVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginVc.m; sourceTree = "<group>"; };
+		B66F4B711F7C07D00095D311 /* LoginVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginVc.xib; sourceTree = "<group>"; };
 		B6D84ED11F5262390057013F /* 1_ReactiveCocoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 1_ReactiveCocoa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6D84ED51F5262390057013F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B6D84ED71F5262390057013F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -95,6 +103,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B66F4B631F7C04F90095D311 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B66F4B6F1F7C07D00095D311 /* LoginVc.h */,
+				B66F4B701F7C07D00095D311 /* LoginVc.m */,
+				B66F4B711F7C07D00095D311 /* LoginVc.xib */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B66F4B641F7C050F0095D311 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B66F4B671F7C06540095D311 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B66F4B691F7C06AA0095D311 /* LogingVM.h */,
+				B66F4B6A1F7C06AA0095D311 /* LogingVM.m */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B66F4B681F7C065A0095D311 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B6D84EC81F5262390057013F = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +161,10 @@
 		B6D84ED31F5262390057013F /* 1_ReactiveCocoa */ = {
 			isa = PBXGroup;
 			children = (
+				B66F4B631F7C04F90095D311 /* Controllers */,
+				B66F4B681F7C065A0095D311 /* Views */,
+				B66F4B671F7C06540095D311 /* ViewModels */,
+				B66F4B641F7C050F0095D311 /* Models */,
 				B6D84ED71F5262390057013F /* AppDelegate.h */,
 				B6D84ED81F5262390057013F /* AppDelegate.m */,
 				B6D84EDA1F5262390057013F /* ViewController.h */,
@@ -296,6 +341,7 @@
 				B6D84EE41F5262390057013F /* LaunchScreen.storyboard in Resources */,
 				B6D84EE11F5262390057013F /* Assets.xcassets in Resources */,
 				B6209A6E1F55B797007F25E0 /* flags.plist in Resources */,
+				B66F4B731F7C07D00095D311 /* LoginVc.xib in Resources */,
 				B6D84EDF1F5262390057013F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +421,8 @@
 				B6D84ED91F5262390057013F /* AppDelegate.m in Sources */,
 				B6D84F0A1F5322FD0057013F /* RedView.m in Sources */,
 				B6D84ED61F5262390057013F /* main.m in Sources */,
+				B66F4B721F7C07D00095D311 /* LoginVc.m in Sources */,
+				B66F4B6B1F7C06AA0095D311 /* LogingVM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
